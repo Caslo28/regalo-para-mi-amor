@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Para você 💛</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow: hidden;
+        font-family: Georgia, serif;
+        background: linear-gradient(180deg, #fff9df, #fff3b0, #ffe680);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Fundo com brilho */
+
+      .background {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .glow {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 210, 0, 0.25);
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: glow 5s infinite alternate;
+      }
+
+      .glow:nth-child(1) {
+        top: -150px;
+        left: -100px;
+      }
+
+      .glow:nth-child(2) {
+        bottom: -150px;
+        right: -100px;
+        animation-delay: 2s;
+      }
+
+      @keyframes glow {
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.3);
+        }
+      }
+
+      /* Cartão */
+
+      .card {
+        position: relative;
+        z-index: 10;
+
+        width: min(90%, 650px);
+        padding: 45px 30px;
+
+        text-align: center;
+
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(15px);
+
+        border-radius: 30px;
+
+        box-shadow: 0 20px 60px rgba(150, 110, 0, 0.25);
+
+        animation: aparecer 1.5s ease;
+      }
+
+      @keyframes aparecer {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .titulo {
+        color: #d49b00;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .subtitulo {
+        color: #705500;
+        font-size: 1.15rem;
+        margin-bottom: 30px;
+      }
+
+      /* Buquê */
+
+      .bouquet {
+        position: relative;
+        height: 280px;
+        margin-bottom: 20px;
+      }
+
+      .flowers {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+      }
+
+      /* Talos */
+
+      .stem {
+        position: absolute;
+        width: 7px;
+        height: 190px;
+        background: #4d9b45;
+        border-radius: 10px;
+        bottom: 0;
+        left: 50%;
+        transform-origin: bottom;
+      }
+
+      .stem:nth-child(1) {
+        transform: rotate(-25deg);
+      }
+
+      .stem:nth-child(2) {
+        transform: rotate(-10deg);
+      }
+
+      .stem:nth-child(3) {
+        transform: rotate(0deg);
+      }
+
+      .stem:nth-child(4) {
+        transform: rotate(12deg);
+      }
+
+      .stem:nth-child(5) {
+        transform: rotate(27deg);
+      }
+
+      /* Flores */
+
+      .flower {
+        position: absolute;
+        width: 75px;
+        height: 75px;
+
+        left: 50%;
+        bottom: 165px;
+
+        transform: translateX(-50%);
+      }
+
+      .flower:nth-child(6) {
+        transform: translateX(-100px) rotate(-15deg);
+      }
+
+      .flower:nth-child(7) {
+        transform: translateX(-50%) translateY(-30px);
+      }
+
+      .flower:nth-child(8) {
+        transform: translateX(25px) rotate(12deg);
+      }
+
+      .petal {
+        position: absolute;
+
+        width: 35px;
+        height: 48px;
+
+        background: #ffd21c;
+
+        border-radius: 50% 50% 45% 45%;
+
+        left: 20px;
+        top: 10px;
+
+        transform-origin: center 28px;
+
+        box-shadow: 0 2px 8px rgba(200, 150, 0, 0.2);
+      }
+
+      .petal:nth-child(1) {
+        transform: rotate(0deg) translateY(-20px);
+      }
+
+      .petal:nth-child(2) {
+        transform: rotate(60deg) translateY(-20px);
+      }
+
+      .petal:nth-child(3) {
+        transform: rotate(120deg) translateY(-20px);
+      }
+
+      .petal:nth-child(4) {
+        transform: rotate(180deg) translateY(-20px);
+      }
+
+      .petal:nth-child(5) {
+        transform: rotate(240deg) translateY(-20px);
+      }
+
+      .petal:nth-child(6) {
+        transform: rotate(300deg) translateY(-20px);
+      }
+
+      .center {
+        position: absolute;
+
+        width: 28px;
+        height: 28px;
+
+        background: #704600;
+
+        border-radius: 50%;
+
+        top: 24px;
+        left: 24px;
+
+        z-index: 5;
+
+        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Movimento das flores */
+
+      .flower {
+        animation: balanco 3s ease-in-out infinite;
+      }
+
+      .flower:nth-child(7) {
+        animation-delay: 0.5s;
+      }
+
+      .flower:nth-child(8) {
+        animation-delay: 1s;
+      }
+
+      @keyframes balanco {
+        0%,
+        100% {
+          margin-left: 0;
+        }
+
+        50% {
+          margin-left: 5px;
+        }
+      }
+
+      /* Mensagem */
+
+      .mensagem {
+        color: #5f4900;
+        font-size: 1.25rem;
+        line-height: 1.8;
+
+        min-height: 90px;
+
+        margin-top: 10px;
+      }
+
+      .coracao {
+        display: inline-block;
+        color: #e5ae00;
+
+        animation: pulsar 1.3s infinite;
+      }
+
+      @keyframes pulsar {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.3);
+        }
+      }
+
+      /* Botão */
+
+      button {
+        margin-top: 20px;
+
+        border: none;
+        padding: 14px 28px;
+
+        border-radius: 30px;
+
+        background: #f4c400;
+        color: white;
+
+        font-size: 1rem;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        box-shadow: 0 8px 20px rgba(190, 145, 0, 0.25);
+
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        background: #e4b500;
+      }
+
+      /* Pétalas caindo */
+
+      .falling-petal {
+        position: fixed;
+
+        top: -50px;
+
+        width: 15px;
+        height: 22px;
+
+        background: #ffd21c;
+
+        border-radius: 50% 50% 50% 0;
+
+        opacity: 0.8;
+
+        z-index: 2;
+
+        animation: cair linear forwards;
+      }
+
+      @keyframes cair {
+        to {
+          transform: translateY(110vh) rotate(500deg);
+        }
+      }
+
+      /* Celular */
+
+      @media (max-width: 600px) {
+        .titulo {
+          font-size: 2rem;
+        }
+
+        .card {
+          padding: 35px 20px;
+        }
+
+        .mensagem {
+          font-size: 1.1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="glow"></div>
+      <div class="glow"></div>
+    </div>
+
+    <main class="card">
+      <h1 class="titulo">Para tí, mi amor 💛</h1>
+
+      <p class="subtitulo">
+        Un pequeño presente hecho especialmente para tí...
+      </p>
+
+      <div class="bouquet">
+        <div class="flowers">
+          <!-- Talos -->
+          <div class="stem"></div>
+          <div class="stem"></div>
+          <div class="stem"></div>
+          <div class="stem"></div>
+          <div class="stem"></div>
+
+          <!-- Flores -->
+          <div class="flower">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+          </div>
+
+          <div class="flower">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+          </div>
+
+          <div class="flower">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="center"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mensagem" id="mensagem"></p>
+
+      <button onclick="mostrarMensagem()">💛 Clica aqui 💛</button>
+    </main>
+
+    <script>
+      const texto =
+        "Así como esas flores amarillas, " +
+        "quiero que tu vida sea siempre llena de luz, " +
+        "alegría y amor. " +
+        "Gracias por hacer mis días más bonitos. " +
+        "Te amo mucho. 💛";
+
+      let indice = 0;
+
+      function escrever() {
+        if (indice < texto.length) {
+          document.getElementById("mensagem").innerHTML += texto.charAt(indice);
+
+          indice++;
+
+          setTimeout(escrever, 45);
+        }
+      }
+
+      function mostrarMensagem() {
+        document.getElementById("mensagem").innerHTML = "";
+
+        indice = 0;
+
+        escrever();
+      }
+
+      /* Pétalas caindo */
+
+      function criarPetala() {
+        const petala = document.createElement("div");
+
+        petala.classList.add("falling-petal");
+
+        petala.style.left = Math.random() * 100 + "vw";
+
+        petala.style.animationDuration = 4 + Math.random() * 5 + "s";
+
+        petala.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(petala);
+
+        setTimeout(() => {
+          petala.remove();
+        }, 9000);
+      }
+
+      setInterval(criarPetala, 450);
+    </script>
+  </body>
+</html>
